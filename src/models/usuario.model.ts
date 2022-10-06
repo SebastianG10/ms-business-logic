@@ -15,25 +15,23 @@ export class Usuario extends Entity {
     type: 'string',
     required: true,
   })
-  // primerNombre: string;
-  nombres: string;
+  primerNombre: string;
 
-  // @property({
-  //   type: 'string',
-  //   required: true,
-  // })
-  // primerApellido: string;
+  @property({
+    type: 'string',
+    required: true,
+  })
+  primerApellido: string;
 
   @property({
     type: 'string',
   })
-  // segundoApellido?: string;
-  apellidos?: string;
+  segundoApellido?: string;
 
-  // @property({
-  //   type: 'string',
-  // })
-  // segundoNombre?: string;
+  @property({
+    type: 'string',
+  })
+  segundoNombre?: string;
 
   @property({
     type: 'number',
