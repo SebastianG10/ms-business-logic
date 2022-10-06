@@ -1,6 +1,37 @@
-import {Entity, model, property} from '@loopback/repository';
+import {
+  belongsTo,
+  Entity,
+  hasMany,
+  model,
+  property,
+} from '@loopback/repository';
+import {Pago} from './pago.model';
+import {Usuario} from './usuario.model';
 
-@model()
+@model({
+  settings: {
+    foreignKeys: {
+      fk_prestamo_usuario_cedula: {
+        name: 'fk_prestamo_usuario_cedula',
+        entity: 'Usuario',
+        entityKey: 'cedula',
+        foreignKey: 'cedulaUsuario',
+      },
+      fk_prestamo_codeudor_cedula: {
+        name: 'fk_prestamo_codeudor_cedula',
+        entity: 'Codeudor',
+        entityKey: 'cedula',
+        foreignKey: 'cedulaCodeudor',
+      },
+      fk_prestamo_garantia_id: {
+        name: 'fk_prestamo_garantia_id',
+        entity: 'Garantia',
+        entityKey: 'id',
+        foreignKey: 'garantiaId',
+      },
+    },
+  },
+})
 export class Prestamo extends Entity {
   @property({
     type: 'number',
@@ -39,6 +70,21 @@ export class Prestamo extends Entity {
   })
   estadoPago: boolean;
 
+  @property({
+    type: 'number',
+  })
+  cedulaCodeudor?: number;
+
+  @property({
+    type: 'number',
+  })
+  garantiaId?: number;
+
+  @belongsTo(() => Usuario, {name: 'cedulaUsuarios'})
+  cedulaUsuario: number;
+
+  @hasMany(() => Pago)
+  pago: Pago[];
 
   constructor(data?: Partial<Prestamo>) {
     super(data);

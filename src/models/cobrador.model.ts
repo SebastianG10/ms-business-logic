@@ -1,6 +1,18 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, hasMany, model, property} from '@loopback/repository';
+import {Pago} from './pago.model';
 
-@model()
+@model({
+  settings: {
+    foreignKeys: {
+      fk_cpbrador_vehiculo_placa: {
+        name: 'fk_prestamo_vehiculo_placa',
+        entity: 'Vehiculo',
+        entityKey: 'placa',
+        foreignKey: 'vehiculoPlaca',
+      },
+    },
+  },
+})
 export class Cobrador extends Entity {
   @property({
     type: 'number',
@@ -92,6 +104,13 @@ export class Cobrador extends Entity {
   })
   barrio: string;
 
+  @property({
+    type: 'string',
+  })
+  vehiculoPlaca?: string;
+
+  @hasMany(() => Pago, {keyTo: 'cobradorCedula'})
+  pago: Pago[];
 
   constructor(data?: Partial<Cobrador>) {
     super(data);

@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, hasOne, model, property} from '@loopback/repository';
+import {Prestamo} from './prestamo.model';
 
 @model()
 export class Codeudor extends Entity {
@@ -80,6 +81,8 @@ export class Codeudor extends Entity {
   })
   barrio: string;
 
+  @hasOne(() => Prestamo, {keyTo: 'cedulaCodeudor'})
+  prestamo: Prestamo;
 
   constructor(data?: Partial<Codeudor>) {
     super(data);

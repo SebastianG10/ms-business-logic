@@ -1,6 +1,23 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model()
+@model({
+  settings: {
+    foreignKeys: {
+      fk_transaccion_inversionista_caja_id: {
+        name: 'fk_transaccion_inversionista_caja_id',
+        entity: 'Caja',
+        entityKey: 'id',
+        foreignKey: 'cajaId',
+      },
+      fk_transaccion_inversionista_inversionista_cedula: {
+        name: 'fk_transaccion_inversionista_inversionista_cedula',
+        entity: 'Inversionista',
+        entityKey: 'cedula',
+        foreignKey: 'inversionistaCedula',
+      },
+    },
+  },
+})
 export class TransaccionInversionista extends Entity {
   @property({
     type: 'number',
@@ -33,6 +50,15 @@ export class TransaccionInversionista extends Entity {
   })
   descripcion: string;
 
+  @property({
+    type: 'number',
+  })
+  cajaId?: number;
+
+  @property({
+    type: 'number',
+  })
+  inversionistaCedula?: number;
 
   constructor(data?: Partial<TransaccionInversionista>) {
     super(data);
@@ -43,4 +69,5 @@ export interface TransaccionInversionistaRelations {
   // describe navigational properties here
 }
 
-export type TransaccionInversionistaWithRelations = TransaccionInversionista & TransaccionInversionistaRelations;
+export type TransaccionInversionistaWithRelations = TransaccionInversionista &
+  TransaccionInversionistaRelations;

@@ -10,3 +10,4 @@ export * from './cobrador.model';
 export * from './transaccion-cobrador.model';
 export * from './prestamo.model';
 export * from './pago.model';
+export * from './prestamo-caja.model';

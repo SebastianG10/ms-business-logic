@@ -1,4 +1,10 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, hasMany, model, property} from '@loopback/repository';
+import {Cobrador} from './cobrador.model';
+import {Inversionista} from './inversionista.model';
+import {PrestamoCaja} from './prestamo-caja.model';
+import {Prestamo} from './prestamo.model';
+import {TransaccionCobrador} from './transaccion-cobrador.model';
+import {TransaccionInversionista} from './transaccion-inversionista.model';
 
 @model()
 export class Caja extends Entity {
@@ -43,6 +49,21 @@ export class Caja extends Entity {
   })
   ciudad?: string;
 
+  @hasMany(() => Inversionista, {
+    through: {
+      model: () => TransaccionInversionista,
+      keyTo: 'inversionistaCedula',
+    },
+  })
+  inversionista: Inversionista[];
+
+  @hasMany(() => Prestamo, {through: {model: () => PrestamoCaja}})
+  prestamo: Prestamo[];
+
+  @hasMany(() => Cobrador, {
+    through: {model: () => TransaccionCobrador, keyTo: 'cobradoCedula'},
+  })
+  cobrador: Cobrador[];
 
   constructor(data?: Partial<Caja>) {
     super(data);

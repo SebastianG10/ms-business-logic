@@ -10,3 +10,4 @@ export * from './transaccion-cobrador.repository';
 export * from './transaccion-inversionista.repository';
 export * from './usuario.repository';
 export * from './vehiculo.repository';
+export * from './prestamo-caja.repository';
