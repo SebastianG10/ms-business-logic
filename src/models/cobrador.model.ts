@@ -4,8 +4,8 @@ import {Pago} from './pago.model';
 @model({
   settings: {
     foreignKeys: {
-      fk_cpbrador_vehiculo_placa: {
-        name: 'fk_prestamo_vehiculo_placa',
+      fk_cobrador_vehiculo_placa: {
+        name: 'fk_cobrador_vehiculo_placa',
         entity: 'Vehiculo',
         entityKey: 'placa',
         foreignKey: 'vehiculoPlaca',
