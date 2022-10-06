@@ -33,10 +33,10 @@ export class TransaccionCobrador extends Entity {
   cantidad: number;
 
   @property({
-    type: 'number',
+    type: 'string',
     required: true,
   })
-  descripcion: number;
+  descripcion: string;
 
   @property({
     type: 'date',
