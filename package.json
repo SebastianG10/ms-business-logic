@@ -56,9 +56,10 @@
     "@loopback/rest": "^12.0.3",
     "@loopback/rest-explorer": "^5.0.3",
     "@loopback/service-proxy": "^5.0.3",
+    "@types/node-fetch": "^2.6.2",
     "loopback-connector-mysql": "^5.4.4",
     "multer": "^1.4.5-lts.1",
-    "node-fetch": "^3.2.10",
+    "node-fetch": "^2.6.7",
     "parse-bearer-token": "^1.0.1",
     "tslib": "^2.0.0"
   },

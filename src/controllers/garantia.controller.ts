@@ -1,3 +1,4 @@
+import {authenticate} from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -7,23 +8,24 @@ import {
   Where,
 } from '@loopback/repository';
 import {
-  post,
-  param,
+  del,
   get,
   getModelSchemaRef,
+  param,
   patch,
+  post,
   put,
-  del,
   requestBody,
   response,
 } from '@loopback/rest';
 import {Garantia} from '../models';
 import {GarantiaRepository} from '../repositories';
 
+@authenticate('admin')
 export class GarantiaController {
   constructor(
     @repository(GarantiaRepository)
-    public garantiaRepository : GarantiaRepository,
+    public garantiaRepository: GarantiaRepository,
   ) {}
 
   @post('/garantia')
@@ -52,9 +54,7 @@ export class GarantiaController {
     description: 'Garantia model count',
     content: {'application/json': {schema: CountSchema}},
   })
-  async count(
-    @param.where(Garantia) where?: Where<Garantia>,
-  ): Promise<Count> {
+  async count(@param.where(Garantia) where?: Where<Garantia>): Promise<Count> {
     return this.garantiaRepository.count(where);
   }
 
@@ -106,7 +106,8 @@ export class GarantiaController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Garantia, {exclude: 'where'}) filter?: FilterExcludingWhere<Garantia>
+    @param.filter(Garantia, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Garantia>,
   ): Promise<Garantia> {
     return this.garantiaRepository.findById(id, filter);
   }
