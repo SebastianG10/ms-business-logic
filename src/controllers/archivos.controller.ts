@@ -8,7 +8,7 @@ import {
   Request,
   requestBody,
   Response,
-  RestBindings,
+  RestBindings
 } from '@loopback/rest';
 import multer from 'multer';
 import path from 'path';
@@ -21,7 +21,7 @@ const readdir = promisify(fs.readdir);
  * A controller to handle file uploads using multipart/form-data media type
  */
 export class ArchivosController {
-  constructor() {}
+  constructor() { }
 
   //@authenticate('admin')
   @post('/cargar-archivo', {

@@ -3,7 +3,7 @@ import {
   Entity,
   hasMany,
   model,
-  property,
+  property
 } from '@loopback/repository';
 import {Pago} from './pago.model';
 import {Usuario} from './usuario.model';

@@ -1,7 +1,7 @@
-import {inject, Getter} from '@loopback/core';
-import {DefaultCrudRepository, repository, HasOneRepositoryFactory} from '@loopback/repository';
+import {Getter, inject} from '@loopback/core';
+import {DefaultCrudRepository, HasOneRepositoryFactory, repository} from '@loopback/repository';
 import {MysqlDataSource} from '../datasources';
-import {Vehiculo, VehiculoRelations, Cobrador} from '../models';
+import {Cobrador, Vehiculo, VehiculoRelations} from '../models';
 import {CobradorRepository} from './cobrador.repository';
 
 export class VehiculoRepository extends DefaultCrudRepository<
