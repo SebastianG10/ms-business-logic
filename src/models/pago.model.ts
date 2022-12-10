@@ -2,6 +2,7 @@ import {belongsTo, Entity, model, property} from '@loopback/repository';
 import {Cobrador} from './cobrador.model';
 import {Prestamo} from './prestamo.model';
 import {Sucursal} from './sucursal.model';
+import {Usuario} from './usuario.model';
 
 @model({
   settings: {
@@ -23,6 +24,12 @@ import {Sucursal} from './sucursal.model';
         entity: 'Cobrador',
         entityKey: 'cedula',
         foreignKey: 'cobradorCedula',
+      },
+      fk_pago_usuario_cedula: {
+        name: 'fk_pago_usuario_cedula',
+        entity: 'Usuario',
+        entityKey: 'cedula',
+        foreignKey: 'usuarioId',
       },
     },
   },
@@ -73,6 +80,9 @@ export class Pago extends Entity {
 
   @belongsTo(() => Prestamo)
   prestamoId: number;
+
+  @belongsTo(() => Usuario)
+  usuarioId: number;
 
   constructor(data?: Partial<Pago>) {
     super(data);
